@@ -6,7 +6,11 @@
 /*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/15 10:32:40 by mdchane           #+#    #+#             */
-/*   Updated: 2018/11/15 10:32:44 by mdchane          ###   ########.fr       */
+/*   Updated: 2018/11/15 12:44:26 by mdchane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+
+int get_next_line(const int fd, char **line)
+{
+}
