@@ -6,7 +6,7 @@
 /*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/15 11:55:12 by mdchane           #+#    #+#             */
-/*   Updated: 2018/11/15 12:44:17 by mdchane          ###   ########.fr       */
+/*   Updated: 2018/11/15 16:15:54 by mdchane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,13 +34,15 @@ void    readandprintlines(int fd, size_t linewidth)
     char    *buff;
     size_t  nbread;
 
-    buff = (char *)malloc(sizeof(buff) * (linewidth + 1))
+    buff = (char *)malloc(sizeof(buff) * (linewidth + 1));
     if (buff == NULL)
-    return ;
+        return ;
     memset((void *)buff, 0, linewidth + 1);
     while ((nbread = read(fd, (void *)buff, linewidth)) != 0)
     {
         printf("%s", buff);
-        
+        memset((void *)buff, 0, linewidth);
     }
+    free(buff);
+    return ;
 }
