@@ -38,7 +38,8 @@ int    get_next_line(const int fd, char **line)
     static char *str;
     int         i;
 
-    if (fd < 0 || line == NULL || fd < 10240)
+    /*if (fd < 0 || line == NULL || fd < 10240)
+        return (-1);*/
     buff = ft_strnew(BUFF_SIZE);
     str = ft_strnew(BUFF_SIZE);
     line = (char **)malloc(sizeof(char *));
@@ -51,6 +52,7 @@ int    get_next_line(const int fd, char **line)
         if (i > -1)
         {
             *line = ft_strsub(str, 0, i + 1);
+            printf("%s\n", *line);
             return (1);
         }
     }
@@ -65,16 +67,14 @@ int    get_next_line(const int fd, char **line)
 int     main(int argc, char **argv)
 {
     int     fd;
-    char    **line;
+    char    *line;
     int     ret;
 
     (void)argc;
+    line = (char *)malloc(sizeof(char));
     fd = open(argv[1], O_RDONLY);
-    while ((ret = get_next_line(fd, line)) > 0)
-    {
-        ft_putendl(*line);
-        free(*line);
-    }
+    ret = get_next_line(fd, &line);
+    ret++;
     close(fd);
     return (0);
 }
