@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/15 10:32:40 by mdchane           #+#    #+#             */
-/*   Updated: 2018/11/20 15:49:11 by mdchane          ###   ########.fr       */
+/*   Updated: 2018/11/20 15:49:12 by mdchane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,15 @@ char    *ft_read_it(char **str, int fd)
 {
     int     nbread;
     char    buff[BUFF_SIZE + 1];
+    char    *tmp;
 
     while ((nbread = read(fd, (void *)buff, BUFF_SIZE)) > 0)
     {
         buff[nbread] = '\0';
-        *str = ft_strjoin(*str, buff);
+        tmp = ft_strjoin(*str, buff);
+        free(*str);
+        *str = tmp;
+        free(tmp);
         if (ft_strchr(*str, '\n'))
             return (*str);
     }
