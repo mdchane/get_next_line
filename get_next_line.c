@@ -34,7 +34,7 @@ char    *ft_read_it(char **str, int fd)
 
 int     ft_errors(char **str, int fd, char **line)
 {
-    if (fd < 0 || line == NULL)
+    if (fd < 0 || line == NULL || BUFF_SIZE < 0 || fd > OPEN_MAX)
         return (1);
     if (!(*str))
     {
